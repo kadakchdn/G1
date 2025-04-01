@@ -1,0 +1,25 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches:
+      - master # Trigger only on pushes to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use GitHub's Ubuntu runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Check out the code from the repository
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # Use Java 11
+
+      - name: Build with Maven
+        run: mvn clean install  # Build the project
+
+      - name: Run tests
+        run: mvn test  # Run the tests
